@@ -1,54 +1,74 @@
 // Simple script to enhance the page
 document.addEventListener('DOMContentLoaded', function() {
-    const header = document.querySelector('h1');
-    const subtitle = document.querySelector('.subtitle');
-    const profileImage = document.querySelector('.profile-image');
-    const navLinks = document.querySelectorAll('.nav-links a');
+    // Check if we're on the home page
+    const isHomePage = window.location.pathname.endsWith('index.html') || 
+                       window.location.pathname.endsWith('/') ||
+                       window.location.pathname === '';
     
-    // Add a subtle animation effect when the page loads
-    profileImage.style.opacity = '0';
-    profileImage.style.transform = 'translateY(-20px)';
-    profileImage.style.transition = 'opacity 1s ease, transform 1s ease';
-    
-    header.style.opacity = '0';
-    header.style.transform = 'translateY(-20px)';
-    header.style.transition = 'opacity 1s ease, transform 1s ease';
-    
-    // Also animate the subtitle
-    subtitle.style.opacity = '0';
-    subtitle.style.transform = 'translateY(-10px)';
-    subtitle.style.transition = 'opacity 1s ease, transform 1s ease';
-    
-    // Staggered animation
-    setTimeout(() => {
-        profileImage.style.opacity = '1';
-        profileImage.style.transform = 'translateY(0)';
+    if (isHomePage) {
+        const header = document.querySelector('h1');
+        const subtitle = document.querySelector('.subtitle');
+        const profileImage = document.querySelector('.profile-image');
         
+        // Add a subtle animation effect when the page loads
+        profileImage.style.opacity = '0';
+        profileImage.style.transform = 'translateY(-20px)';
+        profileImage.style.transition = 'opacity 1s ease, transform 1s ease';
+        
+        header.style.opacity = '0';
+        header.style.transform = 'translateY(-20px)';
+        header.style.transition = 'opacity 1s ease, transform 1s ease';
+        
+        // Also animate the subtitle
+        subtitle.style.opacity = '0';
+        subtitle.style.transform = 'translateY(-10px)';
+        subtitle.style.transition = 'opacity 1s ease, transform 1s ease';
+        
+        // Staggered animation
         setTimeout(() => {
-            header.style.opacity = '1';
-            header.style.transform = 'translateY(0)';
+            profileImage.style.opacity = '1';
+            profileImage.style.transform = 'translateY(0)';
             
-            // Delay the subtitle animation slightly
             setTimeout(() => {
-                subtitle.style.opacity = '1';
-                subtitle.style.transform = 'translateY(0)';
-            }, 300);
-        }, 200);
-    }, 100);
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+                
+                // Delay the subtitle animation slightly
+                setTimeout(() => {
+                    subtitle.style.opacity = '1';
+                    subtitle.style.transform = 'translateY(0)';
+                }, 300);
+            }, 200);
+        }, 100);
+    } else {
+        // For other pages, animate the content placeholder
+        const contentPlaceholder = document.querySelector('.content-placeholder');
+        if (contentPlaceholder) {
+            contentPlaceholder.style.opacity = '0';
+            contentPlaceholder.style.transform = 'translateY(-20px)';
+            contentPlaceholder.style.transition = 'opacity 1s ease, transform 1s ease';
+            
+            setTimeout(() => {
+                contentPlaceholder.style.opacity = '1';
+                contentPlaceholder.style.transform = 'translateY(0)';
+            }, 100);
+        }
+    }
     
-    // Add active state to navigation links
+    // Set active navigation link based on current page
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const currentPage = window.location.pathname.split('/').pop();
+    
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Prevent default behavior
-            e.preventDefault();
-            
-            // Remove active class from all links
-            navLinks.forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Add active class to clicked link
-            this.classList.add('active');
+        // Check if the link href matches the current page
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+        
+        // Add click event listener
+        link.addEventListener('click', function() {
+            // Navigation will happen naturally through the href attribute
+            // No need to prevent default or handle navigation manually
         });
     });
 });

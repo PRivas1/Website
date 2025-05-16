@@ -131,3 +131,25 @@ h1 {
     color: #777;
     line-height: 1.6;
 }
+
+/* Content placeholder for other pages */
+.content-placeholder {
+    text-align: center;
+    margin-top: 5rem;
+    padding: 2rem;
+}
+
+.content-placeholder h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.content-placeholder p {
+    font-size: 1.2rem;
+    color: #777;
+}
+
+/* Page content class for non-home pages */
+.page-content {
+    min-height: 100vh;
+}
