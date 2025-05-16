@@ -292,3 +292,80 @@ h1 {
         height: calc(100vh - 60px);
     }
 }
+
+/* Contact page styles */
+.contact-container {
+    max-width: 900px;
+    margin: 5rem auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.contact-container h1 {
+    font-size: 3.5rem;
+    margin-bottom: 4rem;
+    color: #333;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 1.5rem 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.contact-item i {
+    font-size: 2.5rem;
+    color: #4dabf7;
+    margin-right: 2rem;
+    min-width: 3rem;
+    text-align: center;
+}
+
+.contact-item a {
+    color: #555;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+    flex-grow: 1;
+    text-align: left;
+    font-weight: 500;
+}
+
+.contact-item a:hover {
+    color: #4dabf7;
+}
+
+/* Responsive styling for contact page */
+@media (max-width: 768px) {
+    .contact-item {
+        flex-direction: row;
+        padding: 1.25rem;
+    }
+    
+    .contact-item i {
+        margin-right: 1.5rem;
+        font-size: 2rem;
+        min-width: 2.5rem;
+    }
+    
+    .contact-item a {
+        font-size: 1.3rem;
+    }
+}
