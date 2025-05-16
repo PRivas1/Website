@@ -1,9 +1,8 @@
 // Simple script to enhance the page
 document.addEventListener('DOMContentLoaded', function() {
     // Check if we're on the home page
-    const isHomePage = window.location.pathname.endsWith('index.html') || 
-                       window.location.pathname.endsWith('/') ||
-                       window.location.pathname === '';
+    const path = window.location.pathname;
+    const isHomePage = path === '/' || path === '/index.html' || path === '';
     
     if (isHomePage) {
         const header = document.querySelector('h1');
@@ -57,18 +56,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set active navigation link based on current page
     const navLinks = document.querySelectorAll('.nav-links a');
-    const currentPage = window.location.pathname.split('/').pop();
+    const currentPath = window.location.pathname;
     
     navLinks.forEach(link => {
-        // Check if the link href matches the current page
-        if (link.getAttribute('href') === currentPage) {
+        // Get the path from the href attribute
+        const linkPath = link.getAttribute('href');
+        
+        // Check if the link path matches the current path
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        } else if (currentPath === '/' && linkPath === '/') {
             link.classList.add('active');
         }
-        
-        // Add click event listener
-        link.addEventListener('click', function() {
-            // Navigation will happen naturally through the href attribute
-            // No need to prevent default or handle navigation manually
-        });
     });
 });
