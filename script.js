@@ -93,6 +93,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 box.style.transform = 'translateY(0)';
             });
         }, 100);
+    } else if (path === '/projects' || path === '/projects/') {
+        // Animation for projects page
+        const header = document.querySelector('.projects-container h1');
+        const projectBoxes = document.querySelectorAll('.project-box');
+        
+        // Set initial state
+        header.style.opacity = '0';
+        header.style.transform = 'translateY(-20px)';
+        header.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        
+        projectBoxes.forEach((box, index) => {
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(-15px)';
+            box.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            box.style.transitionDelay = `${index * 200 + 300}ms`;
+        });
+        
+        // Trigger animations
+        setTimeout(() => {
+            header.style.opacity = '1';
+            header.style.transform = 'translateY(0)';
+            
+            projectBoxes.forEach(box => {
+                box.style.opacity = '1';
+                box.style.transform = 'translateY(0)';
+            });
+        }, 100);
     } else {
         // For other pages, animate the content placeholder
         const contentPlaceholder = document.querySelector('.content-placeholder');
