@@ -39,6 +39,60 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 300);
             }, 200);
         }, 100);
+    } else if (path === '/contact' || path === '/contact/') {
+        // Animation for contact page
+        const header = document.querySelector('.contact-container h1');
+        const contactItems = document.querySelectorAll('.contact-item');
+        
+        // Set initial state
+        header.style.opacity = '0';
+        header.style.transform = 'translateY(-20px)';
+        header.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        
+        contactItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(-15px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            item.style.transitionDelay = `${index * 150 + 300}ms`;
+        });
+        
+        // Trigger animations
+        setTimeout(() => {
+            header.style.opacity = '1';
+            header.style.transform = 'translateY(0)';
+            
+            contactItems.forEach(item => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            });
+        }, 100);
+    } else if (path === '/experience' || path === '/experience/') {
+        // Animation for experience page
+        const header = document.querySelector('.experience-container h1');
+        const experienceBoxes = document.querySelectorAll('.experience-box');
+        
+        // Set initial state
+        header.style.opacity = '0';
+        header.style.transform = 'translateY(-20px)';
+        header.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        
+        experienceBoxes.forEach((box, index) => {
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(-15px)';
+            box.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            box.style.transitionDelay = `${index * 150 + 300}ms`;
+        });
+        
+        // Trigger animations
+        setTimeout(() => {
+            header.style.opacity = '1';
+            header.style.transform = 'translateY(0)';
+            
+            experienceBoxes.forEach(box => {
+                box.style.opacity = '1';
+                box.style.transform = 'translateY(0)';
+            });
+        }, 100);
     } else {
         // For other pages, animate the content placeholder
         const contentPlaceholder = document.querySelector('.content-placeholder');
