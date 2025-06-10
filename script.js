@@ -1,5 +1,34 @@
 // Simple script to enhance the page
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    const navOverlay = document.getElementById('nav-overlay');
+    
+    if (hamburger && navLinks && navOverlay) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+        });
+        
+        navOverlay.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            navOverlay.classList.remove('active');
+        });
+        
+        // Close menu when clicking on a link
+        const navLinkItems = navLinks.querySelectorAll('a');
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
+            });
+        });
+    }
+
     // Check if we're on the home page
     const path = window.location.pathname;
     const isHomePage = path === '/' || path === '/index.html' || path === '';
@@ -136,10 +165,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Set active navigation link based on current page
-    const navLinks = document.querySelectorAll('.nav-links a');
+    const navLinksAll = document.querySelectorAll('.nav-links a');
     const currentPath = window.location.pathname;
     
-    navLinks.forEach(link => {
+    navLinksAll.forEach(link => {
         // Get the path from the href attribute
         const linkPath = link.getAttribute('href');
         
